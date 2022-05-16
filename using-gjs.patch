@@ -1,0 +1,60 @@
+diff -up cinnamon-5.2.7/meson.build.bak cinnamon-5.2.7/meson.build
+--- cinnamon-5.2.7/meson.build.bak	2022-05-07 16:27:59.984113660 +0800
++++ cinnamon-5.2.7/meson.build	2022-05-07 16:26:51.983776903 +0800
+@@ -21,7 +21,7 @@ po_dir = join_paths(meson.source_root(),
+ dbus_services_dir = dependency('dbus-1').get_pkgconfig_variable('session_bus_services_dir', define_variable: ['datadir', datadir])
+ 
+ # dependencies
+-cjs = dependency('cjs-1.0', version: '>= 4.8.0')
++gjs = dependency('gjs-1.0', version: '>= 1.17.1')
+ clutter = dependency('muffin-clutter-0')
+ cmenu = dependency('libcinnamon-menu-3.0', version: '>= 4.8.0')
+ cogl = dependency('muffin-cogl-0')
+diff -up cinnamon-5.2.7/src/cinnamon-global-private.h.bak cinnamon-5.2.7/src/cinnamon-global-private.h
+--- cinnamon-5.2.7/src/cinnamon-global-private.h.bak	2022-05-07 16:30:35.221599567 +0800
++++ cinnamon-5.2.7/src/cinnamon-global-private.h	2022-05-07 16:30:51.079444900 +0800
+@@ -27,7 +27,7 @@
+ #include "cinnamon-wm.h"
+ #include "st.h"
+ 
+-#include <cjs/gjs.h>
++#include <gjs/gjs.h>
+ 
+ struct _CinnamonGlobal {
+   GObject parent;
+diff -up cinnamon-5.2.7/src/cinnamon-plugin.c.bak cinnamon-5.2.7/src/cinnamon-plugin.c
+--- cinnamon-5.2.7/src/cinnamon-plugin.c.bak	2022-05-07 16:30:01.213931254 +0800
++++ cinnamon-5.2.7/src/cinnamon-plugin.c	2022-05-07 16:30:12.543820758 +0800
+@@ -35,7 +35,7 @@
+ #include <GL/glx.h>
+ #include <GL/glxext.h>
+ #endif
+-#include <cjs/gjs.h>
++#include <gjs/gjs.h>
+ #include <meta/display.h>
+ #include <meta/meta-plugin.h>
+ 
+diff -up cinnamon-5.2.7/src/meson.build.bak cinnamon-5.2.7/src/meson.build
+--- cinnamon-5.2.7/src/meson.build.bak	2022-05-07 16:31:00.343354545 +0800
++++ cinnamon-5.2.7/src/meson.build	2022-05-07 16:31:10.374256708 +0800
+@@ -83,7 +83,7 @@ tray_sources = [
+ 
+ libcinnamon_deps = [
+     atk,
+-    cjs,
++    gjs,
+     clutter,
+     cmenu,
+     cogl,
+diff -up cinnamon-5.2.7/src/run-js-test.c.bak cinnamon-5.2.7/src/run-js-test.c
+--- cinnamon-5.2.7/src/run-js-test.c.bak	2022-05-07 16:29:27.746257684 +0800
++++ cinnamon-5.2.7/src/run-js-test.c	2022-05-07 16:29:40.631132018 +0800
+@@ -33,7 +33,7 @@
+ #include <clutter/x11/clutter-x11.h>
+ #include <gdk/gdkx.h>
+ #include <girepository.h>
+-#include <cjs/gjs.h>
++#include <gjs/gjs.h>
+ #include <gtk/gtk.h>
+ 
+ #include "cinnamon-global.h"
