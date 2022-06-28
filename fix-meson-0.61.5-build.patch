@@ -1,0 +1,35 @@
+diff -up cinnamon-5.2.7/docs/reference/cinnamon-js/meson.build.orig cinnamon-5.2.7/docs/reference/cinnamon-js/meson.build
+--- cinnamon-5.2.7/docs/reference/cinnamon-js/meson.build.orig	2022-06-28 07:07:56.936000000 +0000
++++ cinnamon-5.2.7/docs/reference/cinnamon-js/meson.build	2022-06-28 07:08:40.888000000 +0000
+@@ -12,7 +12,6 @@ gnome.gtkdoc(
+     'cinnamon-js',
+     mode: 'xml',
+     main_xml: 'cinnamon-js-docs.sgml',
+-    dependencies: parts_files,
+     src_dir: meson.current_build_dir(),
+     install: true,
+ )
+diff -up cinnamon-5.2.7/src/meson.build.orig cinnamon-5.2.7/src/meson.build
+--- cinnamon-5.2.7/src/meson.build.orig	2022-06-28 07:07:30.696000000 +0000
++++ cinnamon-5.2.7/src/meson.build	2022-06-28 07:06:51.720000000 +0000
+@@ -196,7 +196,7 @@ cinnamon_gir = gnome.generate_gir(
+     includes: cinnamon_gir_includes,
+     install: true,
+     install_dir_typelib: pkglibdir,
+-    install_dir_gir: [false],
++    install_dir_gir: false,
+     extra_args: [
+         '-DST_COMPILATION',
+         '--quiet',
+diff -up cinnamon-5.2.7/src/st/meson.build.orig cinnamon-5.2.7/src/st/meson.build
+--- cinnamon-5.2.7/src/st/meson.build.orig	2022-06-28 07:02:58.008000000 +0000
++++ cinnamon-5.2.7/src/st/meson.build	2022-06-28 07:03:11.224000000 +0000
+@@ -213,7 +213,7 @@ st_gir = gnome.generate_gir(
+     includes: st_gir_includes,
+     install: true,
+     install_dir_typelib: pkglibdir,
+-    install_dir_gir: [false],
++    install_dir_gir: false,
+     extra_args: [
+         '-DST_COMPILATION',
+         '--quiet',
