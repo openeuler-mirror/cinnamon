@@ -11,7 +11,7 @@
 
 Name:           cinnamon
 Version:        5.2.7
-Release:        1
+Release:        2
 Summary:        Window management and application launching for GNOME
 License:        GPLv2+ and LGPLv2+
 URL:            https://github.com/linuxmint/%{name}
@@ -26,6 +26,7 @@ Patch1:         set_wheel.patch
 Patch3:         default_panal_launcher.patch
 Patch4:         remove_crap_from_menu.patch
 Patch5:	        using-gjs.patch
+Patch6:         fix-meson-0.61.5-build.patch
 
 ExcludeArch:    %{ix86}
 
@@ -36,7 +37,7 @@ BuildRequires:  python3-rpm-macros
 BuildRequires:  pkgconfig(gjs-1.0) >= %{gjs_version}
 BuildRequires:  pkgconfig(dbus-glib-1)
 BuildRequires:  pkgconfig(gl)
-BuildRequires:  pkgconfig(gnome-bluetooth-1.0)
+BuildRequires:  pkgconfig(gnome-bluetooth-3.0)
 BuildRequires:  pkgconfig(libgnome-menu-3.0)
 BuildRequires:  pkgconfig(lib%{name}-menu-3.0)
 BuildRequires:  pkgconfig(%{name}-desktop) >= %{cinnamon_desktop_version}
@@ -114,7 +115,7 @@ Requires:       python3-pam
 Requires:       python3-tinycss2
 Requires:       python3-requests
 Requires:       python3-setproctitle%{?_isa}
-Requires:       python3-xapp
+Requires:       python3-xapps-overrides
 Requires:       mintlocale
 Requires:       %{name}-control-center%{?_isa}
 Requires:       %{name}-translations >= %{cinnamon_translations_version}
@@ -256,6 +257,11 @@ EOF
 %doc %{_datadir}/gtk-doc/html/*/
 
 %changelog
+* Mon Jun 27 2022 lin zhang <lin.zhang@turbolinux.com.cn> - 5.2.7-2
+- fix build when meson >= 0.61.5
+- fix BuildRequires: pkgconfig(gnome-bluetooth-1.0)
+- add patch fix-meson-0.61.5-build.patch
+
 * Sat May 07 2022 Wenlong Ding <wenlong.ding@turbolinux.com.cn> - 5.2.7-1
 - Using gjs replace cjs
 - Initial package.
