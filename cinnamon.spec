@@ -1,6 +1,6 @@
 %global __requires_exclude ^lib%{name}.so|^lib%{name}-js.so
 
-%global gjs_version 1.17.1
+%global cjs_version 5.4.0
 %global cinnamon_desktop_version 5.2.0
 %global cinnamon_translations_version 5.2.0
 %global gobject_introspection_version 1.38.0
@@ -11,7 +11,7 @@
 
 Name:           cinnamon
 Version:        5.2.7
-Release:        2
+Release:        3
 Summary:        Window management and application launching for GNOME
 License:        GPLv2+ and LGPLv2+
 URL:            https://github.com/linuxmint/%{name}
@@ -25,8 +25,7 @@ Patch1:         set_wheel.patch
 #Patch2:         revert_25aef37.patch
 Patch3:         default_panal_launcher.patch
 Patch4:         remove_crap_from_menu.patch
-Patch5:	        using-gjs.patch
-Patch6:         fix-meson-0.61.5-build.patch
+Patch5:         fix-meson-0.61.5-build.patch
 
 ExcludeArch:    %{ix86}
 
@@ -34,7 +33,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  meson
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-rpm-macros
-BuildRequires:  pkgconfig(gjs-1.0) >= %{gjs_version}
+BuildRequires:  pkgconfig(cjs-1.0) >= %{cjs_version}
 BuildRequires:  pkgconfig(dbus-glib-1)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(gnome-bluetooth-3.0)
@@ -75,7 +74,7 @@ BuildRequires:  pkgconfig(xtst)
 
 Requires:       %{name}-desktop%{?_isa} >= %{cinnamon_desktop_version}
 Requires:       muffin%{?_isa} >= %{muffin_version}
-Requires:       gjs%{_isa} >= %{gjs_version}
+Requires:       cjs%{?_isa} >= %{cjs_version}
 Requires:       gnome-menus%{?_isa} >= 3.0.0-2
 
 # wrapper script used to restart old GNOME session if run --replace
@@ -115,7 +114,7 @@ Requires:       python3-pam
 Requires:       python3-tinycss2
 Requires:       python3-requests
 Requires:       python3-setproctitle%{?_isa}
-Requires:       python3-xapps-overrides
+Requires:       python3-xapp
 Requires:       mintlocale
 Requires:       %{name}-control-center%{?_isa}
 Requires:       %{name}-translations >= %{cinnamon_translations_version}
@@ -257,6 +256,10 @@ EOF
 %doc %{_datadir}/gtk-doc/html/*/
 
 %changelog
+* Mon Jul 25 2022 wenlong ding <wenlong.ding@turbolinux.com.cn> - 5.2.7-3
+- remove using-gjs.patch
+- Add install requires python3-xapp
+
 * Mon Jun 27 2022 lin zhang <lin.zhang@turbolinux.com.cn> - 5.2.7-2
 - fix build when meson >= 0.61.5
 - fix BuildRequires: pkgconfig(gnome-bluetooth-1.0)
