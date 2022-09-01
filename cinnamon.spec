@@ -11,7 +11,7 @@
 
 Name:           cinnamon
 Version:        5.2.7
-Release:        3
+Release:        4
 Summary:        Window management and application launching for GNOME
 License:        GPLv2+ and LGPLv2+
 URL:            https://github.com/linuxmint/%{name}
@@ -26,6 +26,7 @@ Patch1:         set_wheel.patch
 Patch3:         default_panal_launcher.patch
 Patch4:         remove_crap_from_menu.patch
 Patch5:         fix-meson-0.61.5-build.patch
+Patch6:		show_menu-icon.patch
 
 ExcludeArch:    %{ix86}
 
@@ -221,7 +222,7 @@ chmod a-x files%{_datadir}/%{name}/%{name}-settings/bin/__init__.py
 # install gschema-override for wallpaper
 %{__cat} >> %{buildroot}%{_datadir}/glib-2.0/schemas/10_%{name}-wallpaper.gschema.override << EOF
 [org.cinnamon.desktop.background]
-picture-uri='file:///usr/share/backgrounds/tiles/default_blue.jpg'
+picture-uri='file:///usr/share/backgrounds/default.png'
 EOF
 
 # Provide symlink for the background-propeties.
@@ -256,6 +257,10 @@ EOF
 %doc %{_datadir}/gtk-doc/html/*/
 
 %changelog
+* Thu Sep 01 2022 wenlong ding <wenlong.ding@turbolinux.com.cn> - 5.2.7-4
+- Add show_menu-icon.patch to show menu icons.
+- Change spec file: setting default openEuler wallpaper
+
 * Mon Jul 25 2022 wenlong ding <wenlong.ding@turbolinux.com.cn> - 5.2.7-3
 - remove using-gjs.patch
 - Add install requires python3-xapp
