@@ -1,0 +1,12 @@
+diff -Nur cinnamon-5.2.7.bak/files/usr/share/cinnamon/applets/menu@cinnamon.org/settings-schema.json cinnamon-5.2.7/files/usr/share/cinnamon/applets/menu@cinnamon.org/settings-schema.json
+--- cinnamon-5.2.7.bak/files/usr/share/cinnamon/applets/menu@cinnamon.org/settings-schema.json	2022-09-01 09:56:46.604661650 +0800
++++ cinnamon-5.2.7/files/usr/share/cinnamon/applets/menu@cinnamon.org/settings-schema.json	2022-09-01 10:01:14.701646388 +0800
+@@ -42,7 +42,7 @@
+  },
+  "menu-custom" : {
+     "type" : "switch",
+-    "default" : false,
++    "default" : true,
+     "description" : "Use a custom icon and label",
+     "tooltip" : "Check this to specify a custom icon and label"
+  },
